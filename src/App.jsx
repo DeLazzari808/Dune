@@ -17,14 +17,14 @@ const App = () => {
   const [selectedCampaign, setSelectedCampaign] = useState(null);
 
   const handleLogin = (userData) => {
-    const loggedInUser = {
-        ...baseMockUser,
-        nome: userData.nome,
-        tipo: userData.tipo,
-        email: userData.email,
-        fotoPerfil: userData.fotoPerfil
+    const fullUserData = { 
+      ...baseMockUser, 
+      nome: userData.nome, 
+      tipo: userData.tipo, 
+      email: userData.email, 
+      fotoPerfil: userData.fotoPerfil 
     };
-    setCurrentUser(loggedInUser);
+    setCurrentUser(fullUserData);
     setCurrentPage('Feed');
   };
 
@@ -68,7 +68,7 @@ const App = () => {
             {navItems.map(item => (
               <button
                 key={item.name} onClick={() => setCurrentPage(item.page)}
-                className={'flex flex-col items-center justify-center p-2 rounded-md transition-colors flex-1 hover:opacity-80'}
+                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors flex-1 hover:opacity-80`} 
                 style={{ color: currentPage === item.page ? colors.accent : colors.textSecondary }}
               >
                 <item.icon size={24} strokeWidth={currentPage === item.page ? 2.5 : 2} />

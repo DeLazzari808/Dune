@@ -1,77 +1,78 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
+import { colors } from '../config';
 
 function LoginScreen({ onLogin }) {
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [tipoPerfil, setTipoPerfil] = useState('Modelo');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Implement login logic
-    onLogin({ email, password });
+    if (nome && email && tipoPerfil) {
+      onLogin({ 
+        nome, 
+        email, 
+        tipo: tipoPerfil, 
+        fotoPerfil: `https://placehold.co/100x100/${colors.originalChumbo.substring(1)}/FFFFFF?text=${nome.substring(0,2).toUpperCase()}` 
+      });
+    } else {
+      alert("Por favor, preencha todos os campos.");
+    }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
-        <div>
-          <h2 className="text-center text-3xl font-bold text-gray-900">
-            Login to App Fancy
-          </h2>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-2 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
+  const perfilOptions = ["Modelo", "Marca", "Agencia", "Designer"];
 
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ backgroundColor: colors.pageBg }}>
+      <div className="w-full max-w-md p-8 rounded-xl shadow-2xl" style={{backgroundColor: colors.cardBg}}>
+        <h1 className="text-4xl font-bold text-center mb-2" style={{ color: colors.accent }}>
+          Fancy App
+        </h1>
+        <p className="text-center text-lg mb-8" style={{ color: colors.textSecondary }}>Conectando talentos da moda.</p>
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Sign in
-            </button>
+            <label htmlFor="nome" className="block text-sm font-medium" style={{ color: colors.textMain }}>Nome Completo</label>
+            <input
+              type="text" id="nome" value={nome} onChange={(e) => setNome(e.target.value)}
+              className="mt-1 block w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-1 sm:text-sm"
+              style={{ backgroundColor: colors.cardBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent, '--tw-ring-color': colors.accent }}
+              placeholder="Seu nome"
+            />
           </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium" style={{ color: colors.textMain }}>E-mail</label>
+            <input
+              type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-1 sm:text-sm"
+              style={{ backgroundColor: colors.cardBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent, '--tw-ring-color': colors.accent }}
+              placeholder="seu@email.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="tipoPerfil" className="block text-sm font-medium" style={{ color: colors.textMain }}>Tipo de Perfil</label>
+            <select
+              id="tipoPerfil" value={tipoPerfil} onChange={(e) => setTipoPerfil(e.target.value)}
+              className="mt-1 block w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-1 sm:text-sm"
+              style={{ backgroundColor: colors.cardBg, borderColor: colors.borderLight, color: colors.textMain, '--tw-ring-color': colors.accent }}
+            >
+              {perfilOptions.map(option => (
+                <option key={option} value={option} style={{backgroundColor: colors.cardBg, color: colors.textMain}}>{option}</option>
+              ))}
+            </select>
+          </div>
+          <button
+            type="submit"
+            className="w-full flex justify-center py-3 px-4 rounded-lg shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-opacity-80"
+            style={{ backgroundColor: colors.buttonBg, color: colors.buttonText, '--tw-ring-color': colors.accent }}
+          >
+            Entrar no Fancy
+          </button>
         </form>
+        <p className="mt-6 text-xs text-center" style={{color: colors.link}}>
+          Ao continuar, você concorda com nossos <a href="#" className="font-medium hover:underline" style={{color: colors.accent}}>Termos de Serviço</a> e <a href="#" className="font-medium hover:underline" style={{color: colors.accent}}>Política de Privacidade</a>.
+        </p>
       </div>
     </div>
   );

@@ -28,11 +28,11 @@ export const colors = {
     nome: 'Ana Beatriz',
     tipo: 'Modelo',
     fotoPerfil: `https://placehold.co/100x100/343A40/FFFFFF?text=AB`, // Usando chumbo para o placeholder
-    fotoCapa: '[https://placehold.co/600x200/1E1E1E/E0E0E0?text=Capa+Perfil](https://placehold.co/600x200/1E1E1E/E0E0E0?text=Capa+Perfil)',
+    fotoCapa: 'https://placehold.co/600x200/1E1E1E/E0E0E0?text=Capa+Perfil',
     bio: 'Modelo comercial & editorial | SP & RJ | Apaixonada por moda consciente.',
     portfolio: [
-      { id: 1, tipo: 'imagem', url: '[https://placehold.co/300x400/424242/E0E0E0?text=Portfólio+1](https://placehold.co/300x400/424242/E0E0E0?text=Portfólio+1)', legenda: 'Editorial Vogue' },
-      { id: 2, tipo: 'imagem', url: '[https://placehold.co/300x400/2C2C2E/E0E0E0?text=Portfólio+2](https://placehold.co/300x400/2C2C2E/E0E0E0?text=Portfólio+2)', legenda: 'Campanha Verão' },
+      { id: 1, tipo: 'imagem', url: 'https://placehold.co/300x400/424242/E0E0E0?text=Portfólio+1', legenda: 'Editorial Vogue' },
+      { id: 2, tipo: 'imagem', url: 'https://placehold.co/300x400/2C2C2E/E0E0E0?text=Portfólio+2', legenda: 'Campanha Verão' },
     ],
     experiencias: [
       { id: 1, nome: 'Campanha Outono/Inverno', cliente: 'Marca X', data: '2024', papel: 'Modelo Principal' },
@@ -49,7 +49,7 @@ export const colors = {
       data: "AGO 23", // Formato para destaque
       fullDate: "23 de Agosto, 2025", // Data completa para detalhes
       perfilProcurado: "Modelos Andróginos, Altura 1.75m+",
-      imagemCapa: "[https://placehold.co/400x250/1E1E1E/A0A0A0?text=Evento+BH](https://placehold.co/400x250/1E1E1E/A0A0A0?text=Evento+BH)", // Placeholder para tema escuro
+      imagemCapa: "https://placehold.co/400x250/1E1E1E/A0A0A0?text=Evento+BH", // Placeholder para tema escuro
       tipo: "Casting",
       descricaoCompleta: "Grande oportunidade para modelos em Belo Horizonte. Procuramos novos talentos para campanhas e desfiles. Presença marcante e atitude são essenciais.",
       requisitos: ["Gênero: Todos", "Altura mínima: 1.75m", "Disponibilidade imediata"],
@@ -64,7 +64,7 @@ export const colors = {
       data: "OUT 05",
       fullDate: "05 de Outubro, 2025",
       perfilProcurado: "Modelos com experiência em passarela",
-      imagemCapa: "[https://placehold.co/400x250/1E1E1E/A0A0A0?text=SPFW+Casting](https://placehold.co/400x250/1E1E1E/A0A0A0?text=SPFW+Casting)", // Placeholder para tema escuro
+      imagemCapa: "https://placehold.co/400x250/1E1E1E/A0A0A0?text=SPFW+Casting", // Placeholder para tema escuro
       tipo: "Desfile",
       descricaoCompleta: "Participe da seleção de modelos para a próxima edição do São Paulo Fashion Week. Uma chance única de desfilar para grandes marcas.",
       requisitos: ["Experiência comprovada em passarela", "Portfólio atualizado", "Medidas padrão SPFW"],
@@ -79,7 +79,7 @@ export const colors = {
       data: "NOV 18",
       fullDate: "18 de Novembro, 2025",
       perfilProcurado: "Modelos para moda praia e editorial",
-      imagemCapa: "[https://placehold.co/400x250/1E1E1E/A0A0A0?text=Rio+Casting](https://placehold.co/400x250/1E1E1E/A0A0A0?text=Rio+Casting)", // Placeholder para tema escuro
+      imagemCapa: "https://placehold.co/400x250/1E1E1E/A0A0A0?text=Rio+Casting", // Placeholder para tema escuro
       tipo: "Editorial",
       descricaoCompleta: "Sessão de casting no Rio de Janeiro para editoriais de moda e campanhas de verão. Buscamos diversidade e autenticidade.",
       requisitos: ["Todos os gêneros e etnias", "Atitude e fotogenia", "Disponibilidade para shootings externos"],

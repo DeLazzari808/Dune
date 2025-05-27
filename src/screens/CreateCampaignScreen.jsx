@@ -1,42 +1,70 @@
 // src/screens/CreateCampaignScreen.jsx
 import React, { useState } from 'react';
-import { ArrowLeft, Sparkles, Loader2, UploadCloud } from 'lucide-react'; // Adicione UploadCloud aqui
+import { ArrowLeft, Sparkles, Loader2, UploadCloud, Upload, X } from 'lucide-react';
 import { colors } from '../config';
 
 const CreateCampaignScreen = ({ setCurrentPage, currentUser }) => {
-  const [nomeCampanha, setNomeCampanha] = useState('');
-  const [periodo, setPeriodo] = useState('');
-  const [localizacao, setLocalizacao] = useState('');
-  const [tipoCampanha, setTipoCampanha] = useState('Casting');
-  const [descricao, setDescricao] = useState('');
-  const [perfilProcurado, setPerfilProcurado] = useState('');
-  const [isGeneratingDesc, setIsGeneratingDesc] = useState(false);
-  const [generatedDescError, setGeneratedDescError] = useState('');
+  const [formData, setFormData] = useState({
+    titulo: '',
+    descricao: '',
+    data: '',
+    local: '',
+    vagas: '',
+    valor: '',
+    duracao: '',
+    requisitos: [''],
+    imagemCapa: null
+  });
 
-  const handleGenerateDescription = async () => {
-    if (!nomeCampanha || !tipoCampanha) {
-      setGeneratedDescError("Por favor, preencha o nome e o tipo da campanha primeiro.");
-      return;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleRequisitoChange = (index, value) => {
+    const newRequisitos = [...formData.requisitos];
+    newRequisitos[index] = value;
+    setFormData(prev => ({
+      ...prev,
+      requisitos: newRequisitos
+    }));
+  };
+
+  const addRequisito = () => {
+    setFormData(prev => ({
+      ...prev,
+      requisitos: [...prev.requisitos, '']
+    }));
+  };
+
+  const removeRequisito = (index) => {
+    const newRequisitos = formData.requisitos.filter((_, i) => i !== index);
+    setFormData(prev => ({
+      ...prev,
+      requisitos: newRequisitos
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({
+          ...prev,
+          imagemCapa: reader.result
+        }));
+      };
+      reader.readAsDataURL(file);
     }
-    setIsGeneratingDesc(true);
-    setGeneratedDescError('');
-    let prompt = `Crie uma descrição detalhada e atraente para uma campanha de moda. Nome da Campanha: "${nomeCampanha}". Tipo de Campanha: "${tipoCampanha}".`;
-    if (localizacao) prompt += ` Localização: "${localizacao}".`;
-    if (perfilProcurado) prompt += ` Perfil Procurado: "${perfilProcurado}".`;
-    prompt += ` A descrição deve ser profissional, convidativa e destacar os pontos chave. Use um tom elegante. Formate em parágrafos curtos.`;
-
-    try {
-      // ... (código da chamada à API Gemini, como no protótipo anterior) ...
-      // SIMULAÇÃO DA RESPOSTA DA API POR AGORA:
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simula delay
-      setDescricao(`Esta é uma descrição gerada pela IA para a campanha "${nomeCampanha}", do tipo "${tipoCampanha}". Detalhes adicionais como localização "${localizacao}" e perfil "${perfilProcurado}" foram considerados para criar um texto envolvente e profissional, perfeito para atrair os talentos certos para o seu projeto de moda.`);
-      // Em um caso real, você usaria o fetch para a API Gemini
-    } catch (error) { console.error("Erro ao gerar descrição:", error); setGeneratedDescError(`Erro: ${error.message}`); } finally { setIsGeneratingDesc(false); }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Campanha "${nomeCampanha}" criada (simulação)!`);
+    alert(`Campanha "${formData.titulo}" criada (simulação)!`);
     setCurrentPage('Feed');
   };
 
@@ -51,85 +79,272 @@ const CreateCampaignScreen = ({ setCurrentPage, currentUser }) => {
   }
 
   return (
-    <div className="p-4 md:p-8" style={{backgroundColor: colors.pageBg}}>
-      <button onClick={() => setCurrentPage('Feed')} className="mb-6 flex items-center text-sm hover:text-accent" style={{ color: colors.link }}>
-        <ArrowLeft size={18} className="mr-2"/> Voltar
-      </button>
-      <h2 className="text-3xl font-bold mb-8 uppercase" style={{ color: colors.accent }}>Criar Nova Campanha</h2>
-      <form onSubmit={handleSubmit} className="space-y-6 p-6 md:p-8 rounded-lg shadow-lg" style={{backgroundColor: colors.cardBg}}>
-        <div>
-          <label htmlFor="nomeCampanha" className="block text-sm font-medium" style={{ color: colors.textMain }}>Nome da Campanha</label>
-          <input type="text" id="nomeCampanha" value={nomeCampanha} onChange={e => setNomeCampanha(e.target.value)}
-                 className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-                 style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent }}/>
+    <div className="min-h-screen" style={{ backgroundColor: colors.pageBg }}>
+      {/* Header */}
+      <div className="p-4 border-b" style={{ borderColor: colors.borderLight }}>
+        <div className="flex items-center">
+          <button 
+            onClick={() => setCurrentPage('Feed')}
+            className="p-2 rounded-full mr-4"
+            style={{ backgroundColor: colors.cardBg }}
+          >
+            <ArrowLeft size={24} style={{ color: colors.textMain }} />
+          </button>
+          <h1 className="text-2xl font-bold" style={{ color: colors.textMain }}>Criar Campanha</h1>
         </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="p-4 space-y-6">
+        {/* Imagem de Capa */}
+        <div>
+          <label className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+            Imagem de Capa
+          </label>
+          <div 
+            className="relative h-48 rounded-lg border-2 border-dashed flex items-center justify-center cursor-pointer"
+            style={{ borderColor: colors.borderLight }}
+            onClick={() => document.getElementById('imageInput').click()}
+          >
+            {formData.imagemCapa ? (
+              <>
+                <img 
+                  src={formData.imagemCapa} 
+                  alt="Capa" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  className="absolute top-2 right-2 p-1 rounded-full"
+                  style={{ backgroundColor: colors.cardBg }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFormData(prev => ({ ...prev, imagemCapa: null }));
+                  }}
+                >
+                  <X size={20} style={{ color: colors.textMain }} />
+                </button>
+              </>
+            ) : (
+              <div className="text-center">
+                <Upload size={32} className="mx-auto mb-2" style={{ color: colors.textSecondary }} />
+                <p className="text-sm" style={{ color: colors.textSecondary }}>
+                  Clique para fazer upload da imagem
+                </p>
+              </div>
+            )}
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageChange}
+            />
+          </div>
+        </div>
+
+        {/* Título */}
+        <div>
+          <label htmlFor="titulo" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+            Título
+          </label>
+          <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            value={formData.titulo}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-lg"
+            style={{ 
+              backgroundColor: colors.cardBg,
+              borderColor: colors.borderLight,
+              color: colors.textMain
+            }}
+            required
+          />
+        </div>
+
+        {/* Descrição */}
+        <div>
+          <label htmlFor="descricao" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+            Descrição
+          </label>
+          <textarea
+            id="descricao"
+            name="descricao"
+            value={formData.descricao}
+            onChange={handleChange}
+            rows="4"
+            className="w-full px-4 py-2 rounded-lg"
+            style={{ 
+              backgroundColor: colors.cardBg,
+              borderColor: colors.borderLight,
+              color: colors.textMain
+            }}
+            required
+          />
+        </div>
+
+        {/* Data e Local */}
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="periodo" className="block text-sm font-medium" style={{ color: colors.textMain }}>Período</label>
-            <input type="text" id="periodo" value={periodo} onChange={e => setPeriodo(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-                  style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent }}/>
+            <label htmlFor="data" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+              Data
+            </label>
+            <input
+              type="date"
+              id="data"
+              name="data"
+              value={formData.data}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                borderColor: colors.borderLight,
+                color: colors.textMain
+              }}
+              required
+            />
           </div>
           <div>
-            <label htmlFor="localizacao" className="block text-sm font-medium" style={{ color: colors.textMain }}>Localização</label>
-            <input type="text" id="localizacao" value={localizacao} onChange={e => setLocalizacao(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-                  style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent }}/>
+            <label htmlFor="local" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+              Local
+            </label>
+            <input
+              type="text"
+              id="local"
+              name="local"
+              value={formData.local}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                borderColor: colors.borderLight,
+                color: colors.textMain
+              }}
+              required
+            />
           </div>
         </div>
-        <div>
-          <label htmlFor="tipoCampanha" className="block text-sm font-medium" style={{ color: colors.textMain }}>Tipo de Campanha</label>
-          <select id="tipoCampanha" value={tipoCampanha} onChange={e => setTipoCampanha(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-                  style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain }}>
-            {["Casting", "Colaboração", "Desfile", "Edital", "Evento", "Lookbook"].map(opt => <option key={opt} style={{backgroundColor: colors.cardBg, color: colors.textMain}}>{opt}</option>)}
-          </select>
+
+        {/* Vagas, Valor e Duração */}
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <label htmlFor="vagas" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+              Vagas
+            </label>
+            <input
+              type="number"
+              id="vagas"
+              name="vagas"
+              value={formData.vagas}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                borderColor: colors.borderLight,
+                color: colors.textMain
+              }}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="valor" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+              Valor (R$)
+            </label>
+            <input
+              type="number"
+              id="valor"
+              name="valor"
+              value={formData.valor}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                borderColor: colors.borderLight,
+                color: colors.textMain
+              }}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="duracao" className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+              Duração
+            </label>
+            <input
+              type="text"
+              id="duracao"
+              name="duracao"
+              value={formData.duracao}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                borderColor: colors.borderLight,
+                color: colors.textMain
+              }}
+              placeholder="Ex: 4 horas"
+              required
+            />
+          </div>
         </div>
+
+        {/* Requisitos */}
         <div>
-          <label htmlFor="perfilProcurado" className="block text-sm font-medium" style={{ color: colors.textMain }}>Perfil Procurado</label>
-          <input type="text" id="perfilProcurado" value={perfilProcurado} onChange={e => setPerfilProcurado(e.target.value)}
-                 className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-                 style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent }}/>
-        </div>
-        <div>
-          <div className="flex justify-between items-center">
-            <label htmlFor="descricao" className="block text-sm font-medium" style={{ color: colors.textMain }}>Descrição Detalhada</label>
-            <button type="button" onClick={handleGenerateDescription} disabled={isGeneratingDesc}
-              className="flex items-center text-xs px-3 py-1 rounded border hover:bg-opacity-70"
-              style={{ backgroundColor: colors.buttonBg, color: colors.buttonText, borderColor: colors.buttonBorder, cursor: isGeneratingDesc ? 'not-allowed' : 'pointer' }}>
-              {isGeneratingDesc ? <Loader2 size={14} className="animate-spin mr-1.5" /> : <Sparkles size={14} className="mr-1.5" />}
-              {isGeneratingDesc ? "Gerando..." : "Gerar com IA"}
+          <label className="block text-sm font-medium mb-2" style={{ color: colors.textMain }}>
+            Requisitos
+          </label>
+          <div className="space-y-2">
+            {formData.requisitos.map((requisito, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="text"
+                  value={requisito}
+                  onChange={(e) => handleRequisitoChange(index, e.target.value)}
+                  className="flex-1 px-4 py-2 rounded-lg"
+                  style={{ 
+                    backgroundColor: colors.cardBg,
+                    borderColor: colors.borderLight,
+                    color: colors.textMain
+                  }}
+                  placeholder={`Requisito ${index + 1}`}
+                  required
+                />
+                {index > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => removeRequisito(index)}
+                    className="p-2 rounded-lg"
+                    style={{ backgroundColor: colors.cardBg }}
+                  >
+                    <X size={20} style={{ color: colors.textMain }} />
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={addRequisito}
+              className="w-full py-2 rounded-lg text-sm font-medium"
+              style={{ 
+                backgroundColor: colors.cardBg,
+                color: colors.accent,
+                borderColor: colors.borderLight
+              }}
+            >
+              + Adicionar Requisito
             </button>
           </div>
-          <textarea id="descricao" value={descricao} onChange={e => setDescricao(e.target.value)} rows="6"
-            className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
-            style={{ backgroundColor: colors.pageBg, borderColor: colors.borderLight, color: colors.textMain, caretColor: colors.accent }}/>
-          {generatedDescError && <p className="mt-1 text-xs" style={{color: colors.error}}>{generatedDescError}</p>}
         </div>
-        <div>
-            <label className="block text-sm font-medium" style={{ color: colors.textMain }}>Materiais Anexos (opcional)</label>
-            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md" style={{borderColor: colors.borderLight}}>
-                <div className="space-y-1 text-center">
-                    <UploadCloud size={32} className="mx-auto" style={{color: colors.textSecondary}}/>
-                    <div className="flex text-sm" style={{color: colors.textSecondary}}>
-                        <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium focus-within:outline-none" style={{color: colors.accent, textDecoration: 'underline'}}>
-                            <span>Carregar um arquivo</span>
-                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
-                        </label>
-                        <p className="pl-1">ou arraste e solte</p>
-                    </div>
-                    <p className="text-xs" style={{color: colors.link}}>PDF, PNG, JPG até 10MB</p>
-                </div>
-            </div>
-        </div>
-        <div className="pt-5 flex justify-end space-x-3">
-          <button type="button" onClick={() => setCurrentPage('Feed')}
-            className="px-4 py-2 border rounded-md shadow-sm text-sm font-medium hover:bg-opacity-70"
-            style={{borderColor: colors.buttonBorder, color: colors.buttonText, backgroundColor: colors.buttonBg}}>Cancelar</button>
-          <button type="submit"
-            className="px-4 py-2 border rounded-md shadow-sm text-sm font-medium hover:bg-opacity-90"
-            style={{ backgroundColor: colors.originalChumbo, color: colors.originalTextHighlightInv, borderColor: colors.originalChumbo }}>Publicar</button>
-        </div>
+
+        {/* Botão de Criar */}
+        <button
+          type="submit"
+          className="w-full py-3 rounded-lg text-sm font-medium"
+          style={{ backgroundColor: colors.accent, color: colors.buttonText }}
+        >
+          Criar Campanha
+        </button>
       </form>
     </div>
   );
