@@ -1,8 +1,8 @@
 // src/screens/EventScheduleScreen.jsx
 import React from 'react';
-import { Search, Filter, MapPin, CalendarDays } from 'lucide-react'; // Adicionei MapPin e CalendarDays
-import EventScheduleCard from '../components/EventScheduleCard'; // Importa o card
-import { colors, mockCampaigns } from '../config'; // Importa cores e dados
+import { Search, Filter } from 'lucide-react'; // Removi MapPin e CalendarDays que não são usados diretamente aqui
+import EventScheduleCard from '../components/EventScheduleCard';
+import { colors, mockCampaigns } from '../config';
 
 const EventScheduleScreen = ({ setCurrentPage, setSelectedCampaign }) => (
   <div className="p-4">
@@ -23,11 +23,10 @@ const EventScheduleScreen = ({ setCurrentPage, setSelectedCampaign }) => (
             setCurrentPage('CampaignDetail');
           }}
         />
-      ))
-      /* Adicionada a condição para mostrar mensagem quando não há campanhas */}
+      ))}
        {mockCampaigns.length === 0 && <p className="text-center" style={{color: colors.textSecondary}}>Nenhum evento agendado no momento.</p>}
     </div>
   </div>
 );
 
-export default EventScheduleScreen; 
+export default EventScheduleScreen;

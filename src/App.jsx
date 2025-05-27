@@ -1,11 +1,11 @@
+// src/App.jsx
 import React, { useState } from 'react';
-import { Home, Briefcase, PlusSquare, Bell, User, ArrowLeft, Search, Filter, MapPin, CalendarDays, Edit3, Settings, HelpCircle, LogOut, Sparkles, Loader2 } from 'lucide-react';
-import { colors, mockUser as baseMockUser } from './config'; // Importa as cores e mockUser
+import { Home, PlusSquare, Bell, User, ArrowLeft, Sparkles, Loader2, Briefcase, CheckCircle, MessageCircle, Bookmark, Flag, Share2, Edit3, LogOut, Search, Filter } from 'lucide-react'; // Adicionei ícones que podem ser usados nos ecrãs
+import { colors, mockUser as baseMockUser } from './config'; // mockCampaigns é importado em EventScheduleScreen
 
 // Importe os seus ecrãs
 import LoginScreen from './screens/LoginScreen';
 import EventScheduleScreen from './screens/EventScheduleScreen';
-// Importe os outros ecrãs que você irá criar/copiar
 import CreateCampaignScreen from './screens/CreateCampaignScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -25,7 +25,7 @@ const App = () => {
         fotoPerfil: userData.fotoPerfil
     };
     setCurrentUser(loggedInUser);
-    setCurrentPage('Feed'); // 'Feed' é o nome da nossa página principal de agenda
+    setCurrentPage('Feed');
   };
 
   const handleLogout = () => {
@@ -39,7 +39,7 @@ const App = () => {
       case 'Login': return <LoginScreen onLogin={handleLogin} />;
       case 'Feed': return <EventScheduleScreen setCurrentPage={setCurrentPage} setSelectedCampaign={setSelectedCampaign} currentUser={currentUser} />;
       case 'CreateCampaign': return <CreateCampaignScreen setCurrentPage={setCurrentPage} currentUser={currentUser} />;
-      case 'Notifications': return <NotificationsScreen currentUser={currentUser} />; // Adicione mockCampaigns se necessário dentro do componente
+      case 'Notifications': return <NotificationsScreen currentUser={currentUser} />;
       case 'Profile': return <ProfileScreen currentUser={currentUser} onLogout={handleLogout} setCurrentPage={setCurrentPage} />;
       case 'CampaignDetail': return <CampaignDetailScreen campaign={selectedCampaign} setCurrentPage={setCurrentPage} />;
       default: return <EventScheduleScreen setCurrentPage={setCurrentPage} setSelectedCampaign={setSelectedCampaign} currentUser={currentUser} />;

@@ -14,13 +14,13 @@ const CampaignDetailScreen = ({ campaign, setCurrentPage }) => {
   }
 
   return (
-    <div className="min-h-screen pb-16" style={{ backgroundColor: colors.pageBg }}> {/* Adicionado pb-16 */}
+    <div className="min-h-screen pb-16" style={{ backgroundColor: colors.pageBg }}>
       <div className="relative">
         <img
-          src={campaign.imagemCapa || `https://placehold.co/800x320/1E1E1E/A0A0A0?text=${campaign.nome.substring(0,15)}`}
+          src={campaign.imagemCapa || `https://placehold.co/800x320/1E1E1E/A0A0A0?text=${campaign.nome ? campaign.nome.substring(0,15) : 'Campanha'}`}
           alt={`Capa da ${campaign.nome}`}
           className="w-full h-64 md:h-80 object-cover opacity-80"
-          onError={(e) => { e.target.style.visibility = 'hidden'; e.target.parentElement.style.backgroundColor = colors.cardBg; }}/* Remove a imagem e define background no erro */
+          onError={(e) => { e.target.style.visibility = 'hidden'; e.target.parentElement.style.backgroundColor = colors.cardBg; }}
         />
         <button
           onClick={() => setCurrentPage('Feed')}
@@ -30,8 +30,8 @@ const CampaignDetailScreen = ({ campaign, setCurrentPage }) => {
         </button>
       </div>
       <div className="p-4 md:p-8">
-        <div className="p-6 rounded-lg shadow-xl -mt-16 md:-mt-24 relative z-10" style={{backgroundColor: colors.cardBg}}> {/* Ajuste de margem negativa e z-index */}
-          <span className="text-xs font-semibold uppercase px-3 py-1.5 rounded-full mb-2 inline-block" style={{ backgroundColor: colors.originalBgHighlight, color: colors.originalTextHighlightInv }}> {/* Estilização do tipo */}
+        <div className="p-6 rounded-lg shadow-xl -mt-16 md:-mt-24 relative z-10" style={{backgroundColor: colors.cardBg}}>
+          <span className="text-xs font-semibold uppercase px-3 py-1.5 rounded-full mb-2 inline-block" style={{ backgroundColor: colors.originalBgHighlight, color: colors.originalTextHighlightInv }}>
             {campaign.tipo || "Detalhe"}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold mb-2 uppercase" style={{ color: colors.accent }}>{campaign.nome}</h1>
@@ -41,7 +41,7 @@ const CampaignDetailScreen = ({ campaign, setCurrentPage }) => {
           <p className="text-sm mb-4" style={{ color: colors.textSecondary }}>
             <CalendarDays size={16} className="inline mr-2" style={{color: colors.link}}/> {campaign.fullDate || campaign.data}
           </p>
-          <p className="text-sm mb-6" style={{ color: colors.link }}> {/* Estilização do organizador como link */}
+          <p className="text-sm mb-6" style={{ color: colors.link }}>
             Organizado por: {campaign.organizador || "Não especificado"}
           </p>
           <div className="mb-6">
@@ -69,7 +69,7 @@ const CampaignDetailScreen = ({ campaign, setCurrentPage }) => {
               <strong>Prazo para Inscrição:</strong> {campaign.prazoInscricao || "Não especificado"}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8"> {/* Botões de ação */}
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8">
             <button className="w-full sm:w-auto flex-1 px-6 py-3 text-base font-medium rounded-lg border flex items-center justify-center hover:bg-opacity-70" style={{ backgroundColor: colors.buttonBg, color: colors.buttonText, borderColor: colors.buttonBorder }}>
               <CheckCircle size={20} className="mr-2"/> Candidatar-se Agora
             </button>
@@ -83,4 +83,4 @@ const CampaignDetailScreen = ({ campaign, setCurrentPage }) => {
   );
 };
 
-export default CampaignDetailScreen; 
+export default CampaignDetailScreen;

@@ -1,13 +1,13 @@
 // src/screens/ProfileScreen.jsx
 import React from 'react';
 import { Edit3, Share2, LogOut } from 'lucide-react';
-import { colors, mockUser as defaultMockUser } from '../config'; // Renomeado para evitar conflito
+import { colors, mockUser as defaultMockUser } from '../config';
 
 const ProfileScreen = ({ currentUser, onLogout }) => {
   const user = currentUser || defaultMockUser;
 
   return (
-    <div style={{ backgroundColor: colors.pageBg, color: colors.textMain }} className="min-h-full pb-16"> {/* Adicionado pb-16 */}
+    <div style={{ backgroundColor: colors.pageBg, color: colors.textMain }} className="min-h-full pb-16">
       <div className="relative h-48 md:h-64">
         <img
           src={user.fotoCapa || 'https://placehold.co/800x300/1E1E1E/E0E0E0?text=Capa'}
@@ -74,4 +74,4 @@ const ProfileScreen = ({ currentUser, onLogout }) => {
   );
 };
 
-export default ProfileScreen; 
+export default ProfileScreen;

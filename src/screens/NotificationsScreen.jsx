@@ -1,7 +1,7 @@
 // src/screens/NotificationsScreen.jsx
 import React from 'react';
 import { Briefcase, CheckCircle, MessageCircle } from 'lucide-react';
-import { colors, mockCampaigns } from '../config'; // Importa mockCampaigns para o exemplo
+import { colors, mockCampaigns } from '../config';
 
 const NotificationsScreen = () => (
   <div className="p-4" style={{backgroundColor: colors.pageBg, minHeight: 'calc(100vh - 4rem)'}}>
@@ -19,11 +19,10 @@ const NotificationsScreen = () => (
             <p className="text-xs" style={{ color: colors.textSecondary }}>{notif.time}</p>
           </div>
         </div>
-      ))
-      /* Exemplo de condição para quando não há notificações ou poucas */}
-      {mockCampaigns.length === 0 && <p className="text-center py-4" style={{color: colors.textSecondary}}>Nenhuma notificação.</p>}
+      ))}
+      {mockCampaigns.length < 1 && <p className="text-center py-4" style={{color: colors.textSecondary}}>Nenhuma notificação.</p>}
     </div>
   </div>
 );
 
-export default NotificationsScreen; 
+export default NotificationsScreen;

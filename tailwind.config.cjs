@@ -2,13 +2,10 @@
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // Essencial para o Tailwind encontrar suas classes
   ],
   theme: {
-    extend: {
-      // Não precisamos adicionar cores aqui por enquanto,
-      // pois estamos a usar o objeto 'colors' no nosso código JavaScript.
-    },
+    extend: {},
   },
   plugins: [],
-} 
+}
