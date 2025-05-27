@@ -62,7 +62,7 @@ fancy/
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto é proprietário e confidencial. Todos os direitos reservados. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## 👥 Autores
 
