@@ -1,6 +1,6 @@
 # 🎨 Fancy - Plataforma de Conexão para o Mundo da Moda
 
-![Fancy App](https://placehold.co/800x400/1E1E1E/E0E0E0?text=Fancy+App)
+![Fancy App](./screenshots/login-screen.png)
 
 ## 📱 Sobre o Projeto
 
@@ -27,16 +27,16 @@ Fancy é uma plataforma moderna que conecta profissionais do mundo da moda, incl
 ## 📸 Screenshots
 
 ### Tela de Login
-![Login Screen](https://placehold.co/400x800/1E1E1E/E0E0E0?text=Login+Screen)
+![Login Screen](./screenshots/login-screen.png)
 
 ### Feed de Eventos
-![Event Feed](https://placehold.co/400x800/1E1E1E/E0E0E0?text=Event+Feed)
+![Event Feed](./screenshots/event-feed.png)
 
 ### Perfil do Usuário
-![User Profile](https://placehold.co/400x800/1E1E1E/E0E0E0?text=User+Profile)
+![User Profile](./screenshots/user-profile.png)
 
 ### Criação de Campanha
-![Create Campaign](https://placehold.co/400x800/1E1E1E/E0E0E0?text=Create+Campaign)
+![Create Campaign](./screenshots/create-campaign.png)
 
 ## 🎯 Estrutura do Projeto
 
