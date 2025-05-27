@@ -66,11 +66,4 @@ Este projeto é proprietário e confidencial. Todos os direitos reservados. Veja
 
 ## 👥 Autores
 
-- **João Pedro DeLazzari** - [GitHub](https://github.com/DeLazzari808)
-
-## 🙏 Agradecimentos
-
-- [React](https://reactjs.org/)
-- [Vite](https://vitejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Lucide Icons](https://lucide.dev/)
+- **DLZ** - [GitHub](https://github.com/DeLazzari808)
