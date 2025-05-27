@@ -21,4 +21,6 @@ body {
   background-color: #121212; /* Cor de pageBg do config.js */
   color: #E0E0E0; /* Cor de textMain do config.js */
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

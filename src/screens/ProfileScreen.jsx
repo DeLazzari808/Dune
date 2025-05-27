@@ -1,6 +1,6 @@
 // src/screens/ProfileScreen.jsx
 import React from 'react';
-import { Edit3, Share2, LogOut, Camera, MapPin, Mail, Phone, Instagram, Linkedin, Globe } from 'lucide-react';
+import { Edit3, Share2, LogOut, Camera, MapPin, Mail, Phone, Instagram, Linkedin, Globe, ArrowLeft } from 'lucide-react';
 import { colors } from '../config'; // mockUser é passado como 'user' via props
 
 const ProfileScreen = ({ user, onLogout, onBack }) => { // onBack adicionado como prop
