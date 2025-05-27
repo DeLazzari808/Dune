@@ -24,26 +24,6 @@ Fancy é uma plataforma moderna que conecta profissionais do mundo da moda, incl
 - PostCSS
 - ESLint
 
-## 🚀 Como Executar
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/DeLazzari808/fancy.git
-```
-
-2. Instale as dependências:
-```bash
-cd fancy
-npm install
-```
-
-3. Inicie o servidor de desenvolvimento:
-```bash
-npm run dev
-```
-
-4. Acesse `http://localhost:5173` no seu navegador
-
 ## 📸 Screenshots
 
 ### Tela de Login
