@@ -4,8 +4,9 @@ import EventScheduleCard from '../components/EventScheduleCard';
 import { colors, mockCampaigns } from '../config';
 import { Search, Filter } from 'lucide-react';
 
-function EventScheduleScreen({ events, onViewDetail }) {
-  // Usar mockCampaigns se events não for fornecido ou for vazio (para garantir que algo seja exibido)
+// Removi as props não utilizadas currentUser, setCurrentPage, setSelectedCampaign
+// A prop 'events' será mockCampaigns, e onViewDetail vem de App.jsx
+const EventScheduleScreen = ({ events, onViewDetail }) => {
   const campaignsToDisplay = events && events.length > 0 ? events : mockCampaigns;
 
   return (
@@ -21,9 +22,9 @@ function EventScheduleScreen({ events, onViewDetail }) {
       <div className="space-y-4">
         {campaignsToDisplay.map(campaign => (
           <EventScheduleCard
-            key={campaign.id} // Usar campaign.id como key se disponível
-            campaign={campaign} // Passa o objeto campaign
-            onClick={() => onViewDetail(campaign)} // Chama onViewDetail com a campaign ao clicar
+            key={campaign.id}
+            campaign={campaign}
+            onClick={() => onViewDetail(campaign)}
           />
         ))}
         
