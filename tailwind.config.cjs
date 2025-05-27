@@ -6,17 +6,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        pageBg: '#121212',
-        cardBg: '#1E1E1E',
-        textMain: '#E0E0E0',
-        textSecondary: '#A0A0A0',
-        borderLight: '#424242',
-        buttonBg: '#1E1E1E',
-        buttonBorder: '#E0E0E0',
-        buttonText: '#E0E0E0',
-        accent: '#FFFFFF',
-      },
+      // Não precisamos adicionar cores aqui por enquanto,
+      // pois estamos a usar o objeto 'colors' no nosso código JavaScript.
     },
   },
   plugins: [],

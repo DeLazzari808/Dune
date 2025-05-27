@@ -1,76 +1,85 @@
-import { useState } from 'react';
-import { Home, Calendar, Bell, User, Plus } from 'lucide-react';
+import React, { useState } from 'react';
+import { Home, Briefcase, PlusSquare, Bell, User, ArrowLeft, Search, Filter, MapPin, CalendarDays, Edit3, Settings, HelpCircle, LogOut, Sparkles, Loader2 } from 'lucide-react';
+import { colors, mockUser as baseMockUser } from './config'; // Importa as cores e mockUser
+
+// Importe os seus ecrãs
 import LoginScreen from './screens/LoginScreen';
-import { mockUser } from './config';
+import EventScheduleScreen from './screens/EventScheduleScreen';
+// Importe os outros ecrãs que você irá criar/copiar
+import CreateCampaignScreen from './screens/CreateCampaignScreen';
+import NotificationsScreen from './screens/NotificationsScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import CampaignDetailScreen from './screens/CampaignDetailScreen';
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('login');
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('Login');
   const [currentUser, setCurrentUser] = useState(null);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
 
-  const handleLogin = (credentials) => {
-    // TODO: Implement actual login logic
-    setCurrentUser(mockUser);
-    setCurrentPage('home');
+  const handleLogin = (userData) => {
+    const loggedInUser = {
+        ...baseMockUser,
+        nome: userData.nome,
+        tipo: userData.tipo,
+        email: userData.email,
+        fotoPerfil: userData.fotoPerfil
+    };
+    setCurrentUser(loggedInUser);
+    setCurrentPage('Feed'); // 'Feed' é o nome da nossa página principal de agenda
   };
 
-  const navItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'schedule', icon: Calendar, label: 'Schedule' },
-    { id: 'notifications', icon: Bell, label: 'Notifications' },
-    { id: 'profile', icon: User, label: 'Profile' },
-  ];
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setSelectedCampaign(null);
+    setCurrentPage('Login');
+  };
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'login':
-        return <LoginScreen onLogin={handleLogin} />;
-      case 'home':
-        return (
-          <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Welcome, {currentUser?.name}</h1>
-            {/* TODO: Add home screen content */}
-          </div>
-        );
-      default:
-        return <div>Page not found</div>;
+      case 'Login': return <LoginScreen onLogin={handleLogin} />;
+      case 'Feed': return <EventScheduleScreen setCurrentPage={setCurrentPage} setSelectedCampaign={setSelectedCampaign} currentUser={currentUser} />;
+      case 'CreateCampaign': return <CreateCampaignScreen setCurrentPage={setCurrentPage} currentUser={currentUser} />;
+      case 'Notifications': return <NotificationsScreen currentUser={currentUser} />; // Adicione mockCampaigns se necessário dentro do componente
+      case 'Profile': return <ProfileScreen currentUser={currentUser} onLogout={handleLogout} setCurrentPage={setCurrentPage} />;
+      case 'CampaignDetail': return <CampaignDetailScreen campaign={selectedCampaign} setCurrentPage={setCurrentPage} />;
+      default: return <EventScheduleScreen setCurrentPage={setCurrentPage} setSelectedCampaign={setSelectedCampaign} currentUser={currentUser} />;
     }
   };
 
-  if (currentPage === 'login') {
-    return renderPage();
+  const navItems = [
+    { name: 'Agenda', icon: Home, page: 'Feed' },
+    ...(currentUser && (currentUser.tipo === 'Marca' || currentUser.tipo === 'Agencia')
+      ? [{ name: 'Criar', icon: PlusSquare, page: 'CreateCampaign' }]
+      : []),
+    { name: 'Notificações', icon: Bell, page: 'Notifications' },
+    { name: 'Perfil', icon: User, page: 'Profile' },
+  ];
+
+  if (!currentUser && currentPage !== 'Login') {
+    return <LoginScreen onLogin={handleLogin} />;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="pb-16">
-        {renderPage()}
-      </main>
-      
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-        <div className="flex justify-around items-center h-16">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setCurrentPage(item.id)}
-              className={`flex flex-col items-center justify-center w-full h-full ${
-                currentPage === item.id ? 'text-blue-600' : 'text-gray-600'
-              }`}
-            >
-              <item.icon className="h-6 w-6" />
-              <span className="text-xs mt-1">{item.label}</span>
-            </button>
-          ))}
-          <button
-            onClick={() => setCurrentPage('create')}
-            className="flex flex-col items-center justify-center w-full h-full text-gray-600"
-          >
-            <Plus className="h-6 w-6" />
-            <span className="text-xs mt-1">Create</span>
-          </button>
-        </div>
-      </nav>
+    <div className="flex flex-col min-h-screen" style={{ backgroundColor: colors.pageBg, color: colors.textMain }}>
+      <main className="flex-grow pb-16"> {renderPage()} </main>
+      {currentUser && currentPage !== 'Login' && (
+        <nav className="fixed bottom-0 left-0 right-0 h-16 border-t z-50 flex items-center" style={{ backgroundColor: colors.cardBg, borderColor: colors.borderLight }}>
+          <div className="flex justify-around items-center h-full w-full max-w-3xl mx-auto px-2">
+            {navItems.map(item => (
+              <button
+                key={item.name} onClick={() => setCurrentPage(item.page)}
+                className={'flex flex-col items-center justify-center p-2 rounded-md transition-colors flex-1 hover:opacity-80'}
+                style={{ color: currentPage === item.page ? colors.accent : colors.textSecondary }}
+              >
+                <item.icon size={24} strokeWidth={currentPage === item.page ? 2.5 : 2} />
+                <span className={`text-xs mt-1 uppercase ${currentPage === item.page ? 'font-semibold' : ''}`}>{item.name}</span>
+              </button>
+            ))}
+          </div>
+        </nav>
+      )}
     </div>
   );
-}
+};
 
 export default App;
