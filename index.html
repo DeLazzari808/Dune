@@ -1,20 +1,363 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App Fancy</title>
-    <style>
-      body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dune - Conectando o Futuro da Moda</title>
+    <script src="https://cdn.tailwindcss.com"></script> {/* Tailwind CSS via CDN */}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> {/* Seu arquivo CSS externo */}
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 py-4 card-bg shadow-lg border-b border-custom">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold highlight-text">Dune</h1>
+            <nav>
+                <a href="#why-fancy" class="text-secondary hover:highlight-text px-3 py-2 rounded-md text-sm font-medium">Por quê?</a>
+                <a href="#features" class="text-secondary hover:highlight-text px-3 py-2 rounded-md text-sm font-medium">Funcionalidades</a>
+                <a href="#for-whom" class="text-secondary hover:highlight-text px-3 py-2 rounded-md text-sm font-medium">Para Quem</a>
+                <a href="#ai-feature" class="text-secondary hover:highlight-text px-3 py-2 rounded-md text-sm font-medium">IA</a>
+                <a href="#mvp" class="text-secondary hover:highlight-text px-3 py-2 rounded-md text-sm font-medium">MVP</a>
+                <a href="#cta-final" class="btn-primary ml-4 px-6 py-2 rounded-lg text-sm">Registo Antecipado</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="min-h-screen relative flex items-center justify-center text-center overflow-hidden pt-20">
+        <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover">
+            <source src="assets/videos/Videofundo.mp4" type="video/mp4">
+            O seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="hero-overlay absolute inset-0 z-10"></div>
+        <div class="relative z-20 p-8 rounded-lg max-w-3xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold highlight-text mb-4 leading-tight">Conecte. Colabore. Crie.</h1>
+            <h2 class="text-3xl md:text-4xl font-semibold highlight-text mb-6">Apresentando o Dune</h2>
+            <p class="text-xl md:text-2xl text-secondary mb-4">
+                Uma plataforma criada para centralizar processos, simplificar conexões e otimizar oportunidades dentro da indústria da moda.
+            </p>
+            <p class="text-lg text-secondary mb-10">
+                O Dune conecta marcas, modelos, agências e profissionais criativos em um ambiente digital estruturado, seguro e funcional.
+            </p>
+            <a href="#cta-final" class="btn-primary px-10 py-4 rounded-lg text-lg">
+                Registe-se para Acesso Antecipado
+            </a>
+        </div>
+    </section>
+
+    <section id="why-fancy" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text mb-8">Por que o Dune?</h2>
+            <p class="text-lg text-secondary max-w-3xl mx-auto mb-12">
+                A indústria da moda é dinâmica e acelerada, mas ainda enfrenta desafios estruturais. Dune surge como uma solução centralizada, inteligente e orientada por eficiência para resolver os principais obstáculos do setor:
+            </p>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="card-bg p-8 rounded-xl shadow-xl border border-custom transform hover:scale-105 transition-transform duration-300">
+                    <div class="icon-placeholder mx-auto mb-4">🧩</div>
+                    <h3 class="text-2xl font-bold highlight-text mb-3">Informação Descentralizada</h3>
+                    <p class="text-secondary">Eliminamos a necessidade de buscar castings, eventos e editais em múltiplas plataformas. Dune reúne tudo em um só lugar, economizando tempo e esforço.</p>
+                </div>
+                <div class="card-bg p-8 rounded-xl shadow-xl border border-custom transform hover:scale-105 transition-transform duration-300">
+                    <div class="icon-placeholder mx-auto mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold highlight-text mb-3">Conexões Fragmentadas</h3>
+                    <p class="text-secondary">Unificamos a comunicação entre marcas, modelos, agências e designers, facilitando o networking profissional de forma clara e direta.</p>
+                </div>
+                <div class="card-bg p-8 rounded-xl shadow-xl border border-custom transform hover:scale-105 transition-transform duration-300">
+                    <div class="icon-placeholder mx-auto mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold highlight-text mb-3">Oportunidades Ocultas</h3>
+                    <p class="text-secondary">Ampliamos o alcance de talentos e projetos criativos, tornando o acesso a oportunidades mais transparente, organizado e acessível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-16 md:py-24 card-bg fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text text-center mb-8">Funcionalidades em Destaque</h2>
+            <p class="text-lg text-secondary text-center max-w-3xl mx-auto mb-16">
+                Dune foi projetado para tornar a experiência profissional no mercado da moda mais simples, eficiente e conectada. Confira os recursos essenciais da plataforma:
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">📢</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Criação de Campanhas</h3>
+                    <p class="text-secondary">Ferramentas intuitivas para marcas criarem e gerenciarem campanhas de casting, atingindo os talentos certos com precisão.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">🖼️</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Portfólios Profissionais</h3>
+                    <p class="text-secondary">Modelos e designers apresentam seus trabalhos em portfólios dinâmicos, organizados e atualizados, destacando sua trajetória e expertise.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">🔔</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Alertas Inteligentes</h3>
+                    <p class="text-secondary">Notificações personalizadas mantêm cada usuário informado sobre castings, eventos e oportunidades relevantes ao seu perfil.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">🔍</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Busca Avançada</h3>
+                    <p class="text-secondary">Filtros estratégicos facilitam a descoberta de talentos e projetos ideais, otimizando o processo de seleção.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">💬</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Comunicação Direta</h3>
+                    <p class="text-secondary">Sistema interno de mensagens que garante interações profissionais seguras, rápidas e centralizadas dentro da plataforma.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                    <div class="icon-placeholder mx-auto">💡</div>
+                    <h3 class="text-2xl font-bold highlight-text mt-4 mb-2">Insights com Inteligência Artificial</h3>
+                    <p class="text-secondary">Análises automatizadas com dados de tendências e mercado, ajudando usuários a se manterem informados e estrategicamente atualizados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="for-whom" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text text-center mb-8">Para Quem é o Dune?</h2>
+            <p class="text-lg text-secondary text-center max-w-3xl mx-auto mb-16">
+                Dune conecta os principais profissionais da moda em um só lugar, com ferramentas que otimizam processos, aumentam a visibilidade e facilitam conexões estratégicas.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-custom flex flex-col min-h-[400px]">
+                    <div>
+                        <h3 class="text-2xl font-bold highlight-text mb-4">Para Marcas</h3>
+                        <ul class="list-disc list-inside text-secondary space-y-2 mb-6 text-left">
+                            <li>Encontre modelos e designers qualificados para campanhas.</li>
+                            <li>Simplifique a gestão de casting e seleção de talentos.</li>
+                            <li>Aumente sua presença e alcance no setor.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 text-center">
+                        <img src="https://placehold.co/300x80/1E1E1E/A0A0A0?text=Perfil%3A+Marca+de+Moda" alt="Perfil: Marca de Moda" class="rounded w-full opacity-75">
+                    </div>
+                </div>
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-custom flex flex-col min-h-[400px]">
+                    <div>
+                        <h3 class="text-2xl font-bold highlight-text mb-4">Para Modelos</h3>
+                        <ul class="list-disc list-inside text-secondary space-y-2 mb-6 text-left">
+                            <li>Acesse oportunidades de trabalho e castings selecionados.</li>
+                            <li>Crie e divulgue seu portfólio profissional.</li>
+                            <li>Conecte-se diretamente com marcas e agências.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 text-center">
+                        <img src="https://placehold.co/300x80/1E1E1E/A0A0A0?text=Perfil%3A+Modelo+Profissional" alt="Perfil: Modelo Profissional" class="rounded w-full opacity-75">
+                    </div>
+                </div>
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-custom flex flex-col min-h-[400px]">
+                    <div>
+                        <h3 class="text-2xl font-bold highlight-text mb-4">Para Agências</h3>
+                        <ul class="list-disc list-inside text-secondary space-y-2 mb-6 text-left">
+                            <li>Gerencie eficientemente seu portfólio de modelos.</li>
+                            <li>Descubra talentos e novas parcerias para seus clientes.</li>
+                            <li>Fortaleça a imagem e reputação da agência.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 text-center">
+                        <img src="https://placehold.co/300x80/1E1E1E/A0A0A0?text=Perfil%3A+Agência+de+Modelos" alt="Perfil: Agência de Modelos" class="rounded w-full opacity-75">
+                    </div>
+                </div>
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-custom flex flex-col min-h-[400px]">
+                    <div>
+                        <h3 class="text-2xl font-bold highlight-text mb-4">Para Designers</h3>
+                        <ul class="list-disc list-inside text-secondary space-y-2 mb-6 text-left">
+                            <li>Exponha suas criações e conecte-se com marcas e produtores.</li>
+                            <li>Encontre editais, concursos e colaborações criativas.</li>
+                            <li>Amplie o alcance do seu trabalho no mercado.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 text-center">
+                        <img src="https://placehold.co/300x80/1E1E1E/A0A0A0?text=Perfil%3A+Designer+de+Moda" alt="Perfil: Designer de Moda" class="rounded w-full opacity-75">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-16 card-bg fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl md:text-4xl font-bold highlight-text mb-6">Relação entre Funcionalidades e Perfis</h3>
+            <p class="text-lg text-secondary max-w-3xl mx-auto">
+                Cada função do Dune foi pensada para gerar valor imediato para quem a utiliza. O sistema organiza e conecta perfis a recursos relevantes, priorizando eficiência e contexto profissional.
+            </p>
+        </div>
+    </section>
+
+    <section id="events" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text text-center mb-8">Agenda de Eventos Inteligente</h2>
+            <p class="text-lg text-secondary text-center max-w-2xl mx-auto mb-16">
+                Nunca mais perca um casting, desfile ou evento importante do setor. Tudo centralizado e ao seu alcance, com filtros para encontrar exatamente o que procura.
+            </p>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center p-6 rounded-xl shadow-lg border border-custom bg-gray-800 hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-6 text-center sm:text-left">
+                        <p class="text-4xl font-bold highlight-text">28</p><p class="text-lg text-secondary">MAI</p>
+                    </div>
+                    <div class="flex-grow mb-4 sm:mb-0">
+                        <h3 class="text-2xl font-bold highlight-text">Fashion Forward Summit 2025</h3>
+                        <p class="text-secondary"><span class="font-semibold">Local:</span> Online / São Paulo Fashion Hub</p>
+                        <p class="text-secondary"><span class="font-semibold">Tipo:</span> Conferência & Networking</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button class="btn-secondary px-4 py-2 rounded-lg text-sm w-full sm:w-auto">Ver como Modelo</button>
+                        <button class="btn-secondary px-4 py-2 rounded-lg text-sm w-full sm:w-auto">Ver como Designer</button>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center p-6 rounded-xl shadow-lg border border-custom bg-gray-800 hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-6 text-center sm:text-left">
+                        <p class="text-4xl font-bold highlight-text">05</p><p class="text-lg text-secondary">JUN</p>
+                    </div>
+                    <div class="flex-grow mb-4 sm:mb-0">
+                        <h3 class="text-2xl font-bold highlight-text">Casting Exclusivo: Nova Coleção Verão</h3>
+                        <p class="text-secondary"><span class="font-semibold">Marca:</span> Elegance Couture</p>
+                        <p class="text-secondary"><span class="font-semibold">Local:</span> Estúdio Central, Rio de Janeiro</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button class="btn-primary px-4 py-2 rounded-lg text-sm w-full sm:w-auto">Inscrever-se (Modelo)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#cta-final" class="btn-primary px-8 py-3 rounded-lg text-md">Ver Todos os Eventos (Em Breve)</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-feature" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+                    <video id="aiFeatureVideoTest" autoplay loop muted playsinline class="rounded-xl shadow-2xl w-full aspect-video">
+                        <source src="assets/videos/IaVideoTest.mp4" type="video/mp4">
+                        O seu navegador não suporta a tag de vídeo.
+                    </video>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-bold highlight-text mb-6">Inteligência Artificial ao Seu Favor</h2>
+                    <p class="text-lg text-secondary mb-8">
+                        Dune utiliza o poder da IA para transformar a sua experiência e fornecer conteúdo estratégico, incluindo:
+                    </p>
+                    <ul class="list-disc list-inside text-secondary space-y-4 text-lg">
+                        <li>
+                            <strong class="highlight-text">Insights de Tendências:</strong> Mantenha-se à frente com análises preditivas sobre as próximas grandes tendências de moda, cores, estilos, comportamento de mercado e atualizações do setor.
+                        </li>
+                        <li>
+                            <strong class="highlight-text">Matching Inteligente:</strong> Nossa IA ajuda marcas a encontrar os talentos perfeitos e profissionais a descobrir as oportunidades mais relevantes, otimizando as conexões.
+                        </li>
+                        <li>
+                            <strong class="highlight-text">Notificações Personalizadas:</strong> Receba alertas e sugestões baseadas nas suas preferências, histórico e comportamento na plataforma, garantindo atenção ao que importa.
+                        </li>
+                    </ul>
+                    <a href="#cta-final" class="btn-secondary mt-10 px-8 py-3 rounded-lg inline-block">Descubra o Poder da IA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mvp" class="py-16 md:py-24 card-bg fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text text-center mb-8">A Primeira Entrega: MVP</h2>
+            <p class="text-lg text-secondary text-center max-w-3xl mx-auto mb-16">
+                Nosso Produto Mínimo Viável (MVP) será o núcleo funcional da experiência Dune. Ele entrega o necessário com excelência, criando uma base sólida para crescimento.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-bold highlight-text mt-4 mb-2">Cadastro Seguro</h3>
+                    <p class="text-secondary">Verificação de perfis para manter a integridade da rede.</p>
+                </div>
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-bold highlight-text mt-4 mb-2">Perfis Profissionais</h3>
+                    <p class="text-secondary">Estrutura clara e detalhada para destacar experiência e competências.</p>
+                </div>
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-bold highlight-text mt-4 mb-2">Alertas Eficientes</h3>
+                    <p class="text-secondary">Notificações relevantes para garantir atenção ao que importa.</p>
+                </div>
+                <div class="text-center p-6">
+                    <h3 class="text-xl font-bold highlight-text mt-4 mb-2">Busca Inteligente</h3>
+                    <p class="text-secondary">Ferramenta de descoberta precisa e objetiva, baseada em filtros reais de necessidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="social-proof" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text mb-12">O Que Dizem Sobre o Futuro (Em Breve)</h2>
+            <p class="text-lg text-secondary max-w-2xl mx-auto mb-10">
+                Estamos a construir uma comunidade forte. Em breve, partilharemos testemunhos de profissionais que estão a transformar as suas carreiras com Dune.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 border border-custom rounded-lg">
+                    <p class="text-secondary italic">"Mal posso esperar para usar Dune e otimizar meus castings!"</p>
+                    <p class="highlight-text font-semibold mt-4">- Diretor de Marca (Expectativa)</p>
+                </div>
+                <div class="p-6 border border-custom rounded-lg">
+                    <p class="text-secondary italic">"Uma plataforma que centraliza oportunidades para modelos é o que faltava."</p>
+                    <p class="highlight-text font-semibold mt-4">- Modelo Profissional (Expectativa)</p>
+                </div>
+                <div class="p-6 border border-custom rounded-lg">
+                    <p class="text-secondary italic">"A IA para tendências parece incrível! Ansioso pelo lançamento."</p>
+                    <p class="highlight-text font-semibold mt-4">- Designer de Moda (Expectativa)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta-final" class="py-16 md:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://placehold.co/150x150/121212/FFFFFF?text=Dune+Logo" alt="Logo Dune" class="mx-auto mb-8 rounded-full">
+            <h2 class="text-4xl md:text-5xl font-bold highlight-text mb-6">Junte-se à Revolução da Moda.</h2>
+            <p class="text-xl text-secondary max-w-xl mx-auto mb-10">
+                Não perca a oportunidade de ser um dos primeiros a experimentar o Dune. Registe-se para acesso antecipado e receba novidades exclusivas.
+            </p>
+            <form class="max-w-lg mx-auto">
+                <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                    <input type="text" placeholder="Seu nome" class="flex-grow p-4 rounded-lg bg-gray-800 border border-custom focus:ring-2 focus:ring-white focus:border-transparent outline-none" required>
+                    <input type="email" placeholder="Seu melhor email" class="flex-grow p-4 rounded-lg bg-gray-800 border border-custom focus:ring-2 focus:ring-white focus:border-transparent outline-none" required>
+                </div>
+                <button type="submit" class="btn-primary w-full sm:w-auto px-10 py-4 rounded-lg text-lg">
+                    Quero Acesso Antecipado!
+                </button>
+            </form>
+            <p class="text-sm text-secondary mt-6">Nós respeitamos sua privacidade. Spam nunca!</p>
+        </div>
+    </section>
+
+    <footer class="py-12 card-bg border-t border-custom">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <a href="#" class="text-secondary hover:highlight-text mx-3 text-2xl">FB</a>
+                <a href="#" class="text-secondary hover:highlight-text mx-3 text-2xl">IG</a>
+                <a href="#" class="text-secondary hover:highlight-text mx-3 text-2xl">LN</a>
+                <a href="#" class="text-secondary hover:highlight-text mx-3 text-2xl">TW</a>
+            </div>
+            <div class="mb-4">
+                <a href="#" class="text-secondary hover:highlight-text px-3">Termos e Condições</a>
+                <span class="text-secondary">|</span>
+                <a href="#" class="text-secondary hover:highlight-text px-3">Política de Privacidade</a>
+            </div>
+            <p class="text-secondary text-sm">&copy; 2024-2025 Dune. Todos os direitos reservados.</p>
+            <p class="text-secondary text-xs mt-1">Conectando o talento à oportunidade no mundo da moda.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+    {/* O JavaScript abaixo está comentado porque você prefere usar o arquivo script.js externo.
+        Certifique-se de que o conteúdo do script.js está correto e atualizado.
+    <script>
+        // Script para animação de entrada suave das seções
+        // ... (código de animação) ...
+
+        // Script para navegação suave
+        // ... (código de navegação) ...
+
+        // Script para controlar o vídeo da seção de IA com som baixo
+        // ... (código de controle de vídeo) ...
+    </script>
+    */}
+
+</body>
 </html>
